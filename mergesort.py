@@ -1,5 +1,3 @@
-## Henrique Nóbrega Grigolli - 41821661
-## Carlos Henrique Chilante - 31898416
 def MergeSort(A):
     n = len(A)
     left = A[:n//2]
