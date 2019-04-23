@@ -1,0 +1,50 @@
+def countLinhas(arquivo):
+    final_arquivo = False
+    string_vazia = ''
+    meu_arquivo = open(arquivo, 'r')
+    count = 0
+    while not final_arquivo:
+        linha = meu_arquivo.readline()
+        if(linha  == string_vazia):
+            final_arquivo = True
+        else:
+            count += 1
+    meu_arquivo.close()
+    return count
+
+def vetorItens(arquivo):
+    n = countLinhas(arquivo)
+    qtde = [0]*n
+    unit = [0]*n
+    desc = [0]*n
+    final_arquivo = False
+    string_vazia = ''
+    meu_arquivo = open(arquivo, 'r')
+    i = 0
+    while not final_arquivo:
+        linha = meu_arquivo.readline()
+        if(linha  == string_vazia):
+            final_arquivo = True
+        else:
+           produtos = linha.rstrip().split(":")
+           qtde[i] = produtos[0]
+           unit[i] = produtos[1]
+           desc[i] = produtos[2]
+           i += 1
+    allProd = [qtde, unit, desc]
+    meu_arquivo.close()
+    return allProd
+
+def main():
+    arquivo = "itens.txt"
+    allP = vetorItens(arquivo)
+    subtotal = 0
+    soma = 0
+    for i in range(len(allP[0])):
+        subtotal = int(allP[0][i])*int(allP[1][i])
+        soma += subtotal
+        print("Produto: ", allP[2][i], " - ", "Subtotal: R$", subtotal)
+    print("Total do pedido: R$",soma)
+
+main()
+    
